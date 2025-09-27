@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;Chain_of_responsibility_stock&apos; to &apos;Chain_of_responsibility_loan&apos;&#x0D;&#x0A;- Original element: &apos;Chain_of_responsibility_stock&apos;&#x0D;&#x0A;- Renamed element: &apos;Chain_of_responsibility_stock&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;Chain_of_responsibility_stock&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=Chain_of_responsibility_stock" name="Chain_of_responsibility_loan" references="true" stamp="1758910417813" version="1.0"/>
+</session>

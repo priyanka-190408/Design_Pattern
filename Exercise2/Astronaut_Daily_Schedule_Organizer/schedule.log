@@ -1,0 +1,10 @@
+Sep 27, 2025 6:47:48 PM ScheduleManager addTask
+INFO: Added task: Morning Task
+Sep 27, 2025 6:48:37 PM ScheduleManager addTask
+INFO: Added task: Team Meeting
+Sep 27, 2025 6:50:09 PM ScheduleManager markTaskCompleted
+WARNING: Task not found to mark completed: Morning Exercise
+Sep 27, 2025 6:51:43 PM ScheduleManager editTask
+INFO: Edited task: Team Meeting -> Extended Team Meeting
+Sep 27, 2025 6:53:19 PM ScheduleManager markTaskCompleted
+INFO: Task marked completed: Morning Task

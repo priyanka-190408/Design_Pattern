@@ -1,0 +1,19 @@
+public class AuthenticationService {
+    private AuthenticationStrategy strategy;
+
+    public AuthenticationService(AuthenticationStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void setStrategy(AuthenticationStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void login(String username, String password) {
+        if (strategy.authenticate(username, password)) {
+            System.out.println("Login successful for user: " + username);
+        } else {
+            System.out.println("Login failed. Please try again.");
+        }
+    }
+}

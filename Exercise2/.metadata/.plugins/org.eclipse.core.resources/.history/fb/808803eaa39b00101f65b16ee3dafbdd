@@ -1,0 +1,86 @@
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+public class ScheduleManager {
+    private static ScheduleManager instance;
+    private final List<Task> tasks = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
+
+    private ScheduleManager() {}
+
+    public static ScheduleManager getInstance() {
+        if (instance == null) {
+            instance = new ScheduleManager();
+        }
+        return instance;
+    }
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void addTask(Task task) {
+        for (Task existing : tasks) {
+            boolean overlap = !(task.getEndTime().isBefore(existing.getStartTime())
+                    || task.getStartTime().isAfter(existing.getEndTime()));
+            if (overlap) {
+                for (Observer o : observers) {
+                    o.notifyConflict(task, existing);
+                }
+                return;
+            }
+        }
+        tasks.add(task);
+        System.out.println("Task added successfully. No conflicts.");
+    }
+
+    public void removeTask(String description) {
+        Optional<Task> taskToRemove = tasks.stream()
+                .filter(t -> t.getDescription().equalsIgnoreCase(description))
+                .findFirst();
+        if (taskToRemove.isPresent()) {
+            tasks.remove(taskToRemove.get());
+            System.out.println("Task removed successfully.");
+        } else {
+            System.out.println("Error: Task not found.");
+        }
+    }
+
+    public void viewTasks() {
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks scheduled for the day.");
+            return;
+        }
+        List<Task> sorted = tasks.stream()
+                .sorted(Comparator.comparing(Task::getStartTime))
+                .collect(Collectors.toList());
+        sorted.forEach(System.out::println);
+    }
+
+    public void viewTasksByPriority(String priority) {
+        List<Task> filtered = tasks.stream()
+                .filter(t -> t.getPriority().equalsIgnoreCase(priority))
+                .sorted(Comparator.comparing(Task::getStartTime))
+                .collect(Collectors.toList());
+        if (filtered.isEmpty()) {
+            System.out.println("No tasks with priority " + priority + ".");
+        } else {
+            filtered.forEach(System.out::println);
+        }
+    }
+
+    public void markTaskCompleted(String description) {
+        Optional<Task> task = tasks.stream()
+                .filter(t -> t.getDescription().equalsIgnoreCase(description))
+                .findFirst();
+        if (task.isPresent()) {
+            task.get().markCompleted();
+            System.out.println("Task marked as completed.");
+        } else {
+            System.out.println("Error: Task not found.");
+        }
+    }
+}

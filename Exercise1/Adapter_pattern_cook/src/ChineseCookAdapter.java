@@ -1,0 +1,12 @@
+public class ChineseCookAdapter implements Cook {
+    private ChineseCook chineseCook;
+
+    public ChineseCookAdapter(ChineseCook cook) {
+        this.chineseCook = cook;
+    }
+
+    @Override
+    public void prepareFood() {
+        chineseCook.makeChineseDish();
+    }
+}

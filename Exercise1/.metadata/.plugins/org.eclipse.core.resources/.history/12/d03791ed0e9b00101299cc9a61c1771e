@@ -1,0 +1,52 @@
+import restaurant.adapter.*;
+import restaurant.cook.*;
+
+import java.util.Scanner;
+
+public class Restaurant {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        boolean running = true;
+        while (running) {
+            System.out.println("\n=== Restaurant Menu ===");
+            System.out.println("1. South Indian Food");
+            System.out.println("2. Korean Food");
+            System.out.println("3. Chinese Food");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = -1;
+            try {
+                choice = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number!");
+                continue;
+            }
+
+            Cook cook = null;
+            switch (choice) {
+                case 1:
+                    cook = new SouthIndianCookAdapter(new SouthIndianCook());
+                    break;
+                case 2:
+                    cook = new KoreanCookAdapter(new KoreanCook());
+                    break;
+                case 3:
+                    cook = new ChineseCookAdapter(new ChineseCook());
+                    break;
+                case 4:
+                    running = false;
+                    System.out.println("Thank you for dining with us!");
+                    continue;
+                default:
+                    System.out.println("Invalid choice. Try again!");
+                    continue;
+            }
+
+            cook.prepareFood(); // Client calls common interface
+        }
+
+        sc.close();
+    }
+}

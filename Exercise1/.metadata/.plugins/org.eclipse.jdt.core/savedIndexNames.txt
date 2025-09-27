@@ -1,0 +1,8 @@
+INDEX VERSION 1.134+C:\Users\tjpri\eclipse-workspace\Design_pattern_exercise\Exercise1\.metadata\.plugins\org.eclipse.jdt.core
+3410646509.index
+1865797976.index
+625496210.index
+15754655.index
+2391295253.index
+4268437905.index
+4142434271.index

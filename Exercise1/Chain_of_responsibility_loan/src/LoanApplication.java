@@ -1,0 +1,23 @@
+public class LoanApplication {
+    private String applicantName;
+    private double amount;
+
+    public LoanApplication(String applicantName, double amount) {
+        if (applicantName == null || applicantName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Applicant name cannot be empty");
+        }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Loan amount must be greater than 0");
+        }
+        this.applicantName = applicantName;
+        this.amount = amount;
+    }
+
+    public String getApplicantName() {
+        return applicantName;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+}

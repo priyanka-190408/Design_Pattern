@@ -1,0 +1,12 @@
+public class SouthIndianCookAdapter implements Cook {
+    private SouthIndianCook southIndianCook;
+
+    public SouthIndianCookAdapter(SouthIndianCook cook) {
+        this.southIndianCook = cook;
+    }
+
+    @Override
+    public void prepareFood() {
+        southIndianCook.makeSouthIndianDish();
+    }
+}

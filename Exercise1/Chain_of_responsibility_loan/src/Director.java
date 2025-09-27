@@ -1,0 +1,17 @@
+public class Director implements LoanApprover {
+    @Override
+    public void setNextApprover(LoanApprover next) {
+        // Director is the last approver, no next handler
+    }
+
+    @Override
+    public void approveLoan(LoanApplication loan) {
+        if (loan.getAmount() <= 1000000) {
+            System.out.println("Director approved loan of ₹" + loan.getAmount() +
+                               " for " + loan.getApplicantName());
+        } else {
+            System.out.println("❌ Loan request of ₹" + loan.getAmount() +
+                               " for " + loan.getApplicantName() + " exceeds approval limits.");
+        }
+    }
+}
